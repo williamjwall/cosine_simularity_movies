@@ -31,8 +31,8 @@ class Data:
         movies_df = pd.DataFrame(movies)
         return movies_df
 
-    def get_data(self):
-        half_path = os.path.dirname(os.path.dirname(__file__))
-        full_path = os.path.join(half_path, "raw_data", "nico_movie_recommender.csv" )
-        df = pd.read_csv(full_path)
-        return df
+PATH = os.path.join(os.path.dirname(__file__), "..", "raw_data", "train.csv")
+
+def get_data():
+    df = pd.read_csv(PATH)
+    return df
