@@ -12,7 +12,7 @@ class Clean_To_Vectorize:
     def __init__(self):
         self.movies_df = data.get_data()
         self.movies_df.drop('Unnamed: 0', inplace=True, axis=1)
-        self.Users_movie
+        self.Users_movie = User_Input.User_data()
 
     def cleaning(self, series):
         sentence = series.strip()
@@ -44,6 +44,5 @@ class Clean_To_Vectorize:
         self.movies_df['vectorized_texts'] = self.movies_df['cleaned_texts'].apply(self.vectorizer)
 
     def Users_Clean_Vectorized(self):
-        Users_movie = self.User_Input.User_data()
-        Users_movie[['cleaned_texts']] = Users_movie[['text']].applymap(self.cleaning)
-        Users_movie['vectorized_texts'] = Users_movie['cleaned_texts'].apply(self.vectorizer)
+        self.Users_movie[['cleaned_texts']] = self.Users_movie[['text']].applymap(self.cleaning)
+        self.Users_movie['vectorized_texts'] = self.Users_movie['cleaned_texts'].apply(self.vectorizer)
