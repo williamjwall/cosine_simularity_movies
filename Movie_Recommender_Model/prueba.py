@@ -31,12 +31,13 @@ class Data:
         movies_df = pd.DataFrame(movies)
         return movies_df
 
+PATH = os.path.join(os.path.dirname(__file__), "..", "raw_data", "train.csv")
+
 def get_data(movie_title):
-    data = pd.read_csv(os.path.join(os.path.dirname(__file__), "..", "raw_data", "nico_movie_recommender.csv"))
+    data = pd.read_csv(os.path.join(os.path.dirname(__file__), "..", "raw_data", "train.csv"))
     movie_data = data.loc[data['title'] == movie_title]
     text = movie_data['text']
     duration = movie_data['duration']
     genre = movie_data['genre']
     title = movie_data['title']
     return text, duration, genre, title
-    
