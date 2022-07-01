@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 # to get the search id for the movie for the URL
 import imdb
-from clean_vectorize import Clean_To_Vectorize
 
 
 class User_Input():
@@ -15,11 +14,11 @@ class User_Input():
         search = ia.search_movie(movie)
         return search[0].movieID
 
-    def User_data():
-        URL = "https://www.imdb.com/title/tt" + str(USERS_movie('Tarzan the wonder car'))
+    def User_data(title):
+        URL = "https://www.imdb.com/title/tt" + str(User_Input.USERS_movie(title))
         response = requests.get(URL, headers={"Accept-Language":"en-US"})
         soup = BeautifulSoup(response.content, "html.parser")
-
+        img_data = soup.select('div img')[0]
         text = soup.find("span", class_="sc-16ede01-0 fMPjMP").string
         genre = []
         for i in soup.find_all("li", class_="ipc-inline-list__item ipc-chip__text"):
@@ -27,4 +26,4 @@ class User_Input():
 
         genre = ", ".join(genre)
 
-        return [{'Text': text, 'Genre': genre}]
+        return [{'Text': text, 'Genre': genre, 'Image': img_data}]
