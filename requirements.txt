@@ -10,6 +10,7 @@ pandas
 scikit-learn
 nlkt
 IMDbPY
+STREAMLIT
 
 # tests/linter
 black
