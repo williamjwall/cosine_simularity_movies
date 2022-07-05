@@ -5,18 +5,15 @@ import imdb
 
 class User_Input:
 
-    def __init__(self):
-        self
-
-    def USERS_movie(self, movie):
+    def USERS_movie(movie):
         # creating instance of IMDb
         ia = imdb.IMDb()
-        # searching the movie
+        # searching the movie to get the encoded title
         search = ia.search_movie(movie)
         return search[0].movieID
 
-    def User_data(self):
-        URL = "https://www.imdb.com/title/tt" + str(USERS_movie('Tarzan the wonder car'))
+    def User_data(streamlit_title):
+        URL = "https://www.imdb.com/title/tt" + str(User_Input.USERS_movie(streamlit_title)) #users input from stream lit
         response = requests.get(URL, headers={"Accept-Language":"en-US"})
         soup = BeautifulSoup(response.content, "html.parser")
         title = 'title' #this will be the users input
