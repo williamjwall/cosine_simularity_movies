@@ -16,6 +16,7 @@ class User_Input:
         response = requests.get(URL, headers={"Accept-Language":"en-US"})
         soup = BeautifulSoup(response.content, "html.parser")
         title = 'title' #this will be the users input
+
         text = soup.find("span", class_="sc-16ede01-0 fMPjMP").string
         genre = []
         for i in soup.find_all("li", class_="ipc-inline-list__item ipc-chip__text"):
@@ -23,4 +24,5 @@ class User_Input:
 
         genre = ", ".join(genre)
 
-        return [{"Title": title, 'Text': text, 'Genre': genre}]
+
+        return [{'Text': text, 'Genre': genre, 'Image': img_data}]

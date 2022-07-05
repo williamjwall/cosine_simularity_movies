@@ -13,6 +13,7 @@ IMDbPY
 streamlit
 sentence-transformers
 
+
 # tests/linter
 black
 coverage
