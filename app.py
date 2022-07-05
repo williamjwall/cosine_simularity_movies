@@ -1,5 +1,4 @@
 import streamlit as st
-from Movie_Recommender_Model import User_input_scrapper
 
 from Movie_Recommender_Model.User_input_scrapper import User_Input
 from Movie_Recommender_Model.Module import MovieAssigner
@@ -15,12 +14,10 @@ st.markdown("""## You can also write your own story! We'll output 3 movies based
 text = st.text_input('story')
 
 
-def User(text):
-    return User_Input.User_data(text)
+movie = User_Input.User_data(text)
+df = MovieAssigner.calling_func(movie)
 
 col1, col2, col3 = st.columns(3)
-
-df = MovieAssigner.calling_func(User)
 
 with col1:
     st.header(df[0])

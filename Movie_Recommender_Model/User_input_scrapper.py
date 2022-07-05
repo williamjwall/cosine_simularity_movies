@@ -6,7 +6,6 @@ import imdb
 class User_Input:
 
     def USERS_movie(movie):
-        # creating instance of IMDb
         ia = imdb.IMDb()
         # searching the movie to get the encoded title
         search = ia.search_movie(movie)
