@@ -8,9 +8,11 @@ wheel>=0.29
 numpy
 pandas
 scikit-learn
-nlkt
+nltk
 IMDbPY
-STREAMLIT
+streamlit
+sentence-transformers
+
 
 # tests/linter
 black

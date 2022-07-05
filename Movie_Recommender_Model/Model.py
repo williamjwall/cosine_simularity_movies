@@ -9,7 +9,7 @@ class MovieAssigner():
 
     # Here we embed the descriptions of the movies --> shape (7150, 384)
     # No matter the len of the texts it will be embeded as 384
-    def embed_sentences(self, df):
+    def embed_sentences(self):
         sentences = np.array(self.df['text'])
 
         model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
