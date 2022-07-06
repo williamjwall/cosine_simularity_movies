@@ -1,15 +1,15 @@
-import pandas as pd
 import numpy as np
-import data
+from Movie_Recommender_Model.data import get_data
 from sentence_transformers import SentenceTransformer, util
 
 class MovieAssigner():
     def __init__(self):
-        self.df = data.get_data()
+        self.df = get_data()
 
     # Here we embed the descriptions of the movies --> shape (7150, 384)
     # No matter the len of the texts it will be embeded as 384
-    def embed_sentences(self):
+    def embed_sentences(self, df):
+        self.df = df
         sentences = np.array(self.df['text'])
 
         model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
@@ -27,7 +27,7 @@ class MovieAssigner():
             title_embedding_dict[key] = value
         return title_embedding_dict
 
-    # Here we input the new movies text, df, and our embedded sentences. We embed the new movies text. Fine cosine simularity
+    # Here we input the new movies text, df, and our embedded sentences. We embed the new movies text. Find cosine simularity
     # between new_move/new_text embedded to a list of our df embedded texts
     def get_3_most_similar_movies(self, new_movie_text, title_embedded_dict):
 
@@ -56,15 +56,14 @@ class MovieAssigner():
 
         return first_movie_most_sim, second_movie_most_sim, third_movie_most_sim
 
-    def calling_func(self, User_Input):
+    def calling_func(self, New_movie_text):
         embedded_sentences = self.embed_sentences(self.df)
-        return self.get_3_most_similar_movies(User_Input, self.df, embedded_sentences)
+        return self.get_3_most_similar_movies(New_movie_text, df, embedded_sentences)
 
 if __name__ == "__main__":
-    df = data.get_data()
+    df = get_data()
     MovieAssigner = MovieAssigner()
     sentences = MovieAssigner.embed_sentences(df)
     embedded_sentences = MovieAssigner.get_embbedings_dict(sentences)
     new_movie_text = "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before Adolf Hitler's Nazis can obtain its awesome powers."
     three_movies = MovieAssigner.get_3_most_similar_movies(new_movie_text, embedded_sentences)
-    print(three_movies)

@@ -12,6 +12,7 @@ nltk
 IMDbPY
 streamlit
 sentence-transformers
+pickle-mixin
 
 
 # tests/linter
