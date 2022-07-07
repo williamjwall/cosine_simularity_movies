@@ -18,8 +18,6 @@ class Data:
                 response = requests.get(URL +'start='+str(((i-1)*50)+1)+'&ref_=adv_prv' , headers={"Accept-Language":"en-US"})
                 soup = BeautifulSoup(response.content, "html.parser")
 
-
-
             for movie in soup.find_all("div", class_="lister-item-content"):
                 title = movie.find("h3").find("a").string
                 duration = int(movie.find("span", class_="runtime").string.strip(' min'))

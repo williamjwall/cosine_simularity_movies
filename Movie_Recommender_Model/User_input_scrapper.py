@@ -20,14 +20,13 @@ class User_Input():
         soup = BeautifulSoup(response.content, "html.parser")
         img_data = soup.select('div img')[0]
         text = soup.find("span", class_="sc-16ede01-0 fMPjMP").text
-        genre = []
-        for i in soup.find_all("li", class_="ipc-inline-list__item ipc-chip__text"):
-            genre.append(i.string)
+        # genre = []
+        # for i in soup.find_all("li", class_="ipc-inline-list__item ipc-chip__text"):
+        #     genre.append(i.string)
 
-        genre = ", ".join(genre)
+        # genre = ", ".join(genre)
 
-
-        return [{'Text': text, 'Genre': genre, 'Image': img_data}]
+        return [{'Text': text, 'Image': img_data}]
 
 if __name__ == "__main__":
     User_Input = User_Input()

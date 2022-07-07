@@ -17,6 +17,9 @@ test:
 streamlit:
 	@streamlit run app.py
 
+run_api:
+	uvicorn api.fast:app --reload
+
 ftest:
 	@Write me
 

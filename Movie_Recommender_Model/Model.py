@@ -37,8 +37,8 @@ class MovieAssigner():
         arg_cos_sim = np.argsort(util.pytorch_cos_sim(new_movie_text_embedded, list(title_embedded_dict.values())))
 
         # This is to aviod outputing the Users movie of choice
-        A = list(title_embedded_dict.values())[arg_cos_sim[0][-1]].round(4)
-        B = new_movie_text_embedded.round(4)
+        A = list(title_embedded_dict.values())[arg_cos_sim[0][-1]].round(5)
+        B = new_movie_text_embedded.round(5)
 
         if np.array_equal(A, B) == True:
             first_arg_most_similar = arg_cos_sim[0][-2]
@@ -55,10 +55,6 @@ class MovieAssigner():
         third_movie_most_sim = list(title_embedded_dict.keys())[third_arg_most_similar]
 
         return first_movie_most_sim, second_movie_most_sim, third_movie_most_sim
-
-    def calling_func(self, New_movie_text):
-        embedded_sentences = self.embed_sentences(self.df)
-        return self.get_3_most_similar_movies(New_movie_text, df, embedded_sentences)
 
 if __name__ == "__main__":
     df = get_data()
