@@ -1,6 +1,4 @@
 from fastapi import FastAPI
-import io
-from starlette.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from Movie_Recommender_Model.Model import MovieAssigner
 from Movie_Recommender_Model.User_input_scrapper import User_Input
@@ -34,4 +32,8 @@ def predict(input_movie):
 @app.get("/predictstory")
 def predictstory(input_story):
     dict = get_pickle()
-    return MovieAssigner().get_3_most_similar_movies(input_story, dict)
+    movies = MovieAssigner().get_3_most_similar_movies(input_story, dict)
+    link1 = User_Input().User_data(User_Input().USERS_movie(movies[0]))[0]["Image"]["srcset"].split('190w,')[1].split('285w')[0].strip()
+    link2 = User_Input().User_data(User_Input().USERS_movie(movies[1]))[0]["Image"]["srcset"].split('190w,')[1].split('285w')[0].strip()
+    link3 = User_Input().User_data(User_Input().USERS_movie(movies[2]))[0]["Image"]["srcset"].split('190w,')[1].split('285w')[0].strip()
+    return {'movies': movies, 'links':[link1, link2, link3]}

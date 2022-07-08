@@ -37,8 +37,8 @@ class MovieAssigner():
         arg_cos_sim = np.argsort(util.pytorch_cos_sim(new_movie_text_embedded, list(title_embedded_dict.values())))
 
         # This is to aviod outputing the Users movie of choice
-        A = list(title_embedded_dict.values())[arg_cos_sim[0][-1]].round(5)
-        B = new_movie_text_embedded.round(5)
+        A = list(title_embedded_dict.values())[arg_cos_sim[0][-1]].round(2)
+        B = new_movie_text_embedded.round(2)
 
         if np.array_equal(A, B) == True:
             first_arg_most_similar = arg_cos_sim[0][-2]

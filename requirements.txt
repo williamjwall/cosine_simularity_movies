@@ -12,6 +12,8 @@ IMDbPY
 streamlit
 sentence-transformers
 pickle-mixin
+uvicorn
+fastapi
 
 
 # tests/linter
