@@ -1,3 +1,6 @@
+#This app is for running without an api
+
+
 import streamlit as st
 
 from Movie_Recommender_Model.data import *
